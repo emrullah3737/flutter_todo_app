@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutterapp2/models/todo.dart';
 
+enum TodoOptions { delete, update }
+
 class TodoListItem extends StatelessWidget {
   final Todo todo;
   final double bottomMargin;
@@ -12,8 +14,16 @@ class TodoListItem extends StatelessWidget {
     this.onPressDelete,
   });
 
-  void _onPressDelete() {
-    onPressDelete(todo);
+  void onSelectTodoOption(TodoOptions todoOptions) {
+    if (todoOptions == TodoOptions.delete) {
+      onPressDelete(todo);
+      return;
+    }
+
+    if (todoOptions == TodoOptions.update) {
+      // TODO: update process
+      return;
+    }
   }
 
   @override
@@ -42,12 +52,32 @@ class TodoListItem extends StatelessWidget {
                         ),
                       ),
                     ),
-                    IconButton(
-                      onPressed: _onPressDelete,
-                      tooltip: "Delete",
-                      color: Colors.white,
-                      icon: Icon(Icons.delete),
-                    )
+                    PopupMenuButton<TodoOptions>(
+                      onSelected: onSelectTodoOption,
+                      itemBuilder: (BuildContext context) =>
+                          <PopupMenuEntry<TodoOptions>>[
+                        PopupMenuItem<TodoOptions>(
+                          value: TodoOptions.delete,
+                          child: Row(
+                            children: <Widget>[
+                              Icon(Icons.delete),
+                              SizedBox(width: 10),
+                              Text('Delete Todo'),
+                            ],
+                          ),
+                        ),
+                        PopupMenuItem<TodoOptions>(
+                          value: TodoOptions.update,
+                          child: Row(
+                            children: <Widget>[
+                              Icon(Icons.add_comment),
+                              SizedBox(width: 10),
+                              Text('Update Todo'),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   ],
                 ),
                 Divider(
