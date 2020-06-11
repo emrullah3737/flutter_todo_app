@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterapp2/models/todo.dart';
 
-enum TodoOptions { delete, update }
+enum TodoOptions { delete, edit }
 
 class TodoListItem extends StatelessWidget {
   final Todo todo;
@@ -20,7 +20,7 @@ class TodoListItem extends StatelessWidget {
       return;
     }
 
-    if (todoOptions == TodoOptions.update) {
+    if (todoOptions == TodoOptions.edit) {
       // TODO: update process
       return;
     }
@@ -67,10 +67,10 @@ class TodoListItem extends StatelessWidget {
                           ),
                         ),
                         PopupMenuItem<TodoOptions>(
-                          value: TodoOptions.update,
+                          value: TodoOptions.edit,
                           child: Row(
                             children: <Widget>[
-                              Icon(Icons.add_comment),
+                              Icon(Icons.edit),
                               SizedBox(width: 10),
                               Text('Update Todo'),
                             ],
