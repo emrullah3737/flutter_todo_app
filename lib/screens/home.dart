@@ -26,8 +26,8 @@ class _HomeState extends State<Home> {
     });
   }
 
-  void onPressAddTodo() async {
-    await showDialog(
+  void onPressAddTodo() {
+    showDialog(
         context: context,
         builder: (BuildContext context) {
           return SimpleDialog(
