@@ -114,7 +114,7 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                       Divider(height: 20),
-                      RaisedButton(
+                      ElevatedButton(
                         onPressed: () {
                           if (todoFormType == TodoFormType.add) {
                             addTodo(buildContext);
@@ -126,7 +126,6 @@ class _HomeState extends State<Home> {
                             return;
                           }
                         },
-                        color: Colors.redAccent,
                         child: Text(dialogButton,
                             style: TextStyle(color: Colors.white)),
                       ),
